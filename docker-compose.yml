@@ -1,0 +1,13 @@
+services:
+  nginx:
+    ports:
+      - "8080:80"
+  wordpress:
+    build: ./srcs/requirements
+    depends_on:
+      - mariadb
+  mariadb:
+volumes:
+  nginx:
+  wordpress:
+  mariadb:
