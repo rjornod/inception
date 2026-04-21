@@ -1,13 +1,26 @@
+# services section
 services:
+  # name of the first service
   nginx:
+    # hostname of the service will be the same as the service name
+    hostname: nginx
+    # # where the service exists so we can build it
+    build: 
+      ./srcs/requirements/nginx/
     ports:
-      - "8080:80"
-  wordpress:
-    build: ./srcs/requirements
-    depends_on:
-      - mariadb
-  mariadb:
-volumes:
-  nginx:
-  wordpress:
-  mariadb:
+    - 443:443
+    # restart to always keep the service restarting 
+    # in case of unexpected errors
+    restart: always
+    # # dependecies
+    # # depends_on:
+    # #   - wordpress
+    # # The ports that we will be working with
+    # ports:
+    #   - 443:443
+    # volumes that will be mounted when the container gets built
+    # volumes:
+    #   - wordpress:/var/www/html
+    # networkd that the container will communicate with other containers
+    # networks:
+    #   - web
